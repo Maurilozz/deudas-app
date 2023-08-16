@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    height: 7px;
+    width: 3px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    background: gray;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    background: #EBF0FA;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #9B9EB8;
+}
+
+.fix {
+    overflow: hidden;
+}
+
+.fill-background {
+    height: 300%;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+
+    input[type="range"]::-webkit-slider-thumb {
+        width: 15px;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 15px;
+        cursor: ew-resize;
+        background: #FFF;
+        box-shadow: -405px 0 0 400px rgb(55 48 163);
+        border-radius: 50%;
+
+    }
+}
+
+.top-15 {
+    top: 15%;
+}
+
+/* ICONOS CSS */
+.material-symbols-outlined.fill {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+/*** SWIPE LIST OVERRIDES **/
+.swipe-action__leading {
+    background-color: rgb(79 70 229);
+    color: #FFF;
+}
+
+.swipe-action__trailing {
+    background-color: rgb(239 68 68);
+    color: #FFF;
+}
+
+.swipeable-list .swipe-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    text-align: right;
+}

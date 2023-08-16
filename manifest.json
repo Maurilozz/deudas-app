@@ -1,0 +1,67 @@
+{
+  "name": "Deudas App",
+  "short_name": "Deudas App",
+  "description":"Crea. administra y envia tu lista de gastos o deudas por whatsapp",
+  "icons": [
+    {
+      "src": "https://res.cloudinary.com/dtgud76wz/image/upload/v1680163379/icons/icon-72x72_mtppfm.png",
+      "type": "image/png",
+      "sizes": "72x72",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://res.cloudinary.com/dtgud76wz/image/upload/v1680163379/icons/icon-96x96_g0prls.png",
+      "type": "image/png",
+      "sizes": "96x96",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://res.cloudinary.com/dtgud76wz/image/upload/v1680163379/icons/icon-128x128_zndtcm.png",
+      "type": "image/png",
+      "sizes": "128x128",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://res.cloudinary.com/dtgud76wz/image/upload/v1680163379/icons/icon-144x144_d7lb2r.png",
+      "type": "image/png",
+      "sizes": "144x144",
+      "purpose": "any"
+    },
+    {
+      "src": "https://res.cloudinary.com/dtgud76wz/image/upload/v1680163379/icons/icon-152x152_rfpp4t.png",
+      "type": "image/png",
+      "sizes": "152x152",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://res.cloudinary.com/dtgud76wz/image/upload/v1680163379/icons/icon-192x192_iqs3iw.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://res.cloudinary.com/dtgud76wz/image/upload/v1680163380/icons/icon-384x384_ykitpt.png",
+      "type": "image/png",
+      "sizes": "384x384",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://res.cloudinary.com/dtgud76wz/image/upload/v1680163381/icons/icon-512x512_aozwfl.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://res.cloudinary.com/dtgud76wz/image/upload/v1680237575/icons/screenshot_vbgfzq.png",
+      "type": "image/png",
+      "sizes": "1080x1920"
+    }],
+  "start_url": "https://deudasapp.netlify.app/",
+  "scope": "https://deudasapp.netlify.app/",
+
+  "display":"standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3f51b5"
+}
