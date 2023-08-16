@@ -5,7 +5,6 @@ import { GastosItem } from "./components/gastosItem";
 import { Popup } from "./components/Popup";
 import { StatesContext } from "./context";
 
-import { Circle } from "react-circle";
 import { GastosLista } from "./components/GastosLista";
 import { NuevoConsumo } from "./components/NuevoConsumo";
 import { User } from "./components/User";
@@ -161,7 +160,7 @@ export const App = () => {
             <h2 className="text-xl font-bold mb-4">Analisis</h2>
 
             <div className="p-4 flex justify-center">
-              <Circle
+              {/* <Circle
                 progress={percentage}
                 animate={true}
                 animationDuration="1s"
@@ -171,7 +170,7 @@ export const App = () => {
                 textStyle={{
                   font: "bold 5rem Helvetica, Arial, sans-serif", // Ejemplo de estilo de texto personalizado
                 }}
-              />
+              /> */}
             </div>
           </section>
 
