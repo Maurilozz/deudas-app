@@ -9,7 +9,7 @@ export const Popup = ({
   scrollBlockIsActive,
   error,
 }) => {
-  const { deleteGroup, viewItemId, typePopup, setTypePopup, checkPaid } =
+  const { deleteGroup, viewItemId, typePopup, setTypePopup } =
     useContext(StatesContext);
 
   useEffect(() => {
@@ -32,11 +32,15 @@ export const Popup = ({
         className="bg-gray-50 dark:bg-gray-300 rounded-lg p-4 w-full mx-3"
         onClick={(e) => e.stopPropagation()}
       >
-        {typePopup === "list-debtors" || typePopup === "list-expenses" ? (
-          <PaidButton onClick={checkPaid} />
-        ) : (
-          <></>
-        )}
+        <p className="bg-green-500 hover:bg-green-600 text-white rounded-lg py-2 px-4 pr-6 text-center inline relative ml-auto">
+          Pagado
+          <span
+            className={`material-symbols-outlined cursor-pointer absolute`}
+            // onClick={() => setSection("debtors")}
+          >
+            check
+          </span>
+        </p>
 
         <p className="font-bold mb-8 text-center text-xl">{title}</p>
 
@@ -72,15 +76,6 @@ export const Popup = ({
             </button>
           )}
 
-          {typePopup === "list-history" && (
-            <button
-              className="bg-red-500 hover:bg-red-600 text-white rounded-lg py-2 px-4"
-              onClick={() => deleteGroup(viewItemId)}
-            >
-              Eliminar
-            </button>
-          )}
-
           {typePopup === "send-expenses" && (
             <button
               className="bg-green-500 hover:bg-green-600 text-white rounded-lg py-2 px-4"
@@ -103,18 +98,3 @@ export const Popup = ({
     </div>
   );
 };
-
-const PaidButton = ({ onClick }) => (
-  <p
-    className="bg-green-500 hover:bg-green-600 text-white rounded-lg py-2 px-4 pr-8 text-center inline relative ml-auto left-56 md:left-0"
-    onClick={onClick}
-  >
-    Pagado
-    <span
-      className={`material-symbols-outlined cursor-pointer absolute`}
-      // onClick={() => setSection("debtors")}
-    >
-      check
-    </span>
-  </p>
-);

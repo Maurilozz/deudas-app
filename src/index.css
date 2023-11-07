@@ -62,7 +62,12 @@
         'opsz' 48
 }
 
-/*** SWIPE LIST OVERRIDES **/
+/* UTILIDAD CSS */
+.max-device {
+    max-height: 29rem;
+}
+
+/*$ SWIPE LIST OVERRIDES $*/
 .swipe-action__leading {
     background-color: rgb(79 70 229);
     color: #FFF;

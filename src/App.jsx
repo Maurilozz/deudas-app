@@ -9,12 +9,14 @@ import { GastosLista } from "./components/GastosLista";
 import { NuevoConsumo } from "./components/NuevoConsumo";
 import { User } from "./components/User";
 import { DeudasLista } from "./components/DeudasLista";
-import { Expenses } from "./components/Expenses";
+import { HistoryExpenses } from "./components/HistoryExpenses";
 import { Debtors } from "./components/Debtors";
 import { SendWhatsapp } from "./components/SendWhatsapp";
 import { Message } from "./components/Message";
 import { ShareTarget } from "./components/ShareTarget";
 import { HomeScreenPrompt } from "./components/HomeScreenPrompt";
+import { dateShort, generateId } from "./helpers";
+import { ExpensesHistory } from "./components/ExpensesHistory";
 
 export const App = () => {
   const [section, setSection] = useState("home");
@@ -37,6 +39,10 @@ export const App = () => {
     JSON.parse(localStorage.getItem("expenses")) ?? []
   );
 
+  const [historyPaid, setHistoryPaid] = useState(
+    JSON.parse(localStorage.getItem("historyPaid")) ?? []
+  );
+
   const [scrollBlockIsActive, setScrollBlockIsActive] = useState(false);
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("darkMode")) ?? false
@@ -54,10 +60,16 @@ export const App = () => {
     if (typePopup === "list-expenses") {
       groupUpdated = groupingExpenses.filter((deudor) => deudor.id !== id);
       setGroupingExpenses(groupUpdated);
-    } else {
-      // De lo contrario, se busca en "groupDebtors"
+    }
+
+    if (typePopup === "list-debtors") {
       groupUpdated = groupDebtors.filter((deudor) => deudor.id !== id);
       setGroupDebtors(groupUpdated);
+    }
+
+    if (typePopup === "list-history") {
+      groupUpdated = historyPaid.filter((group) => group.expenseData.id !== id);
+      setHistoryPaid(groupUpdated);
     }
 
     // Luego, se busca el objeto en "expenses" y se elimina
@@ -68,6 +80,49 @@ export const App = () => {
 
     // Finalmente, se cierra el popup
     setShowPopup(false);
+  };
+
+  const checkPaid = () => {
+    // Buscar el elemento con ID viewItemId en groupDebtors y groupingExpenses
+    const foundInDebtors = groupDebtors.find((item) => item.id === viewItemId);
+    const foundInExpenses = groupingExpenses.find(
+      (item) => item.id === viewItemId
+    );
+
+    // Determinar si se encontró el elemento en alguna de las listas
+    const foundExpense = foundInDebtors || foundInExpenses;
+
+    // Si se encontró el elemento, proceder a actualizar los estados
+    if (foundExpense) {
+      // Obtener solo los elementos de expenses que coinciden con viewItemId
+      const matchingExpenses = expenses.filter(
+        (expense) => expense.idExpense === viewItemId
+      );
+
+      // Eliminar Gstos coincidentes
+      const newMatchingExpenses = expenses.filter(
+        (item) => item.idExpense !== viewItemId
+      );
+
+      // Actualizar lista
+      setExpenses(newMatchingExpenses);
+
+      // Crear un objeto que combine la información del elemento encontrado y los datos de expenses que coinciden
+      const historyItem = {
+        expenseData: {
+          ...foundExpense, // Incluir todos los datos de foundExpense
+          date: dateShort(Date.now()), // Agregar la fecha actual
+          id: generateId(),
+        },
+        expenses: matchingExpenses,
+      };
+
+      // Agregar el objeto creado al historial de pagos
+      setHistoryPaid((prevHistoryPaid) => [...prevHistoryPaid, historyItem]);
+
+      // Cerrar el popup (si está abierto)
+      setShowPopup(false);
+    }
   };
 
   // GUARDAR DATOS EN EL ALMACENAMIENTO LOCAL
@@ -85,6 +140,11 @@ export const App = () => {
     // GUARDAR EN ALMACENAMIENTO LOCAL
     localStorage.setItem("expenses", JSON.stringify(expenses));
   }, [expenses]);
+
+  useEffect(() => {
+    // GUARDAR EN ALMACENAMIENTO LOCAL
+    localStorage.setItem("historyPaid", JSON.stringify(historyPaid));
+  }, [historyPaid]);
 
   useEffect(() => {
     // GUARDAR EN ALMACENAMIENTO LOCAL
@@ -140,7 +200,9 @@ export const App = () => {
     setGroupDebtors,
     expenses,
     setExpenses,
+    historyPaid,
     deleteGroup,
+    checkPaid,
     selectedGroups,
     setSelectedGroups,
   };
@@ -232,7 +294,7 @@ export const App = () => {
 
       {section === "debtors" && <Debtors />}
 
-      {section === "expenses" && <Expenses />}
+      {section === "expenses" && <HistoryExpenses />}
 
       {section === "user" && <User />}
 
@@ -301,6 +363,12 @@ export const App = () => {
           {typePopup === "list-debtors" && <DeudasLista />}
           {typePopup === "send-expenses" && <SendWhatsapp />}
           {typePopup === "message" && <Message />}
+          {typePopup === "list-history" && (
+            <ExpensesHistory
+              historyPaid={historyPaid}
+              viewItemId={viewItemId}
+            />
+          )}
           {typePopup === "new-expenses" && (
             <NuevoConsumo
               expenses={groupingExpenses}
