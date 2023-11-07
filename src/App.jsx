@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { DeudoresItem } from "./components/DeudoresItem";
-import { GastosItem } from "./components/gastosItem";
+import { GastosItem } from "./components/GastosItem";
 import { Popup } from "./components/Popup";
 import { StatesContext } from "./context";
 
@@ -14,7 +14,6 @@ import { Debtors } from "./components/Debtors";
 import { SendWhatsapp } from "./components/SendWhatsapp";
 import { Message } from "./components/Message";
 import { ShareTarget } from "./components/ShareTarget";
-import { HomeScreenPrompt } from "./components/HomeScreenPrompt";
 import { dateShort, generateId } from "./helpers";
 import { ExpensesHistory } from "./components/ExpensesHistory";
 
