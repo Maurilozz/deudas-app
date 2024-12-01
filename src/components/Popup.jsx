@@ -29,7 +29,7 @@ export const Popup = ({
       onClick={() => setShowPopup(false)}
     >
       <div
-        className="bg-gray-50 dark:bg-gray-300 rounded-lg p-4 w-full mx-3"
+        className="bg-gray-50 dark:bg-gray-300 rounded-lg p-4 w-full mx-3 max-h-full overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {typePopup === "list-debtors" || typePopup === "list-expenses" ? (
@@ -40,7 +40,9 @@ export const Popup = ({
 
         <p className="font-bold mb-8 text-center text-xl">{title}</p>
 
-        <div className="overflow-scroll">{children}</div>
+        <div className="overflow-scroll max-h-[600px] md:max-h-[400px]">
+          {children}
+        </div>
 
         {error && <Error>{error}</Error>}
 
